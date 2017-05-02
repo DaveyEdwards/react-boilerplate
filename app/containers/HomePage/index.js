@@ -16,7 +16,6 @@ import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
-import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
@@ -72,7 +71,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 </AtPrefix>
                 <TextField
                   id="username"
-                  floatingLabelText="mxstbr"
+                  floatingLabelText="daveyedwards"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
                 />
