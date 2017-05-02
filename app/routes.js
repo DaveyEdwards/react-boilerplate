@@ -47,6 +47,42 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/flow',
+      name: 'productPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/ProductPage/reducer'),
+          import('containers/ProductPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('productPage', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/contact',
+      name: 'contactPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/ContactPage/reducer'),
+          import('containers/ContactPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('contactPage', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
