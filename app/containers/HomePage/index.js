@@ -23,6 +23,8 @@ import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 
+import TextField from 'material-ui/TextField';
+
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
@@ -68,10 +70,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 <AtPrefix>
                   <FormattedMessage {...messages.trymeAtPrefix} />
                 </AtPrefix>
-                <Input
+                <TextField
                   id="username"
-                  type="text"
-                  placeholder="mxstbr"
+                  floatingLabelText="mxstbr"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
                 />
