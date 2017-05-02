@@ -102,9 +102,9 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    onChangeUsername: (event) => dispatch(changeUsername(event.target.value)),
+    onSubmitForm: (event) => {
+      if (event !== undefined && event.preventDefault) event.preventDefault();
       dispatch(loadRepos());
     },
   };
