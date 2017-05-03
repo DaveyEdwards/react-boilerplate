@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import A from './A';
@@ -9,27 +9,31 @@ import HeaderLink from './HeaderLink';
 import Banner from './banner.jpg';
 import messages from './messages';
 import FlatButton from 'material-ui/FlatButton';
+import { injectIntl, intlShape } from 'react-intl';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-        <A href="https://twitter.com/mxstbr">
-          <Img src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        <NavBar>
-          <FlatButton containerElement={<Link to={'/'} />} label={messages.home.defaultMessage} />
-          <FlatButton containerElement={<Link to={'/Features'} />} label={messages.features.defaultMessage} />
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
-          </HeaderLink>
-        </NavBar>
-      </div>
-    );
-  }
+const Header = ({ intl }) => { // eslint-disable-line react/prefer-stateless-function
+  const testbutton = intl.formatMessage(messages.home)
+  return (
+    <div>
+      <A href="https://twitter.com/mxstbr">
+        <Img src={Banner} alt="react-boilerplate - Logo" />
+      </A>
+      <NavBar>
+        <FlatButton containerElement={<Link to={'/'} />} label={testbutton} />
+        <FlatButton containerElement={<Link to={'/Features'} />} label={messages.features.defaultMessage} />
+        <HeaderLink to="/">
+          <FormattedMessage {...messages.home} />
+        </HeaderLink>
+        <HeaderLink to="/features">
+          <FormattedMessage {...messages.features} />
+        </HeaderLink>
+      </NavBar>
+    </div>
+  );
 }
 
-export default Header;
+Header.propTypes = {
+  intl: intlShape.isRequired
+};
+
+export default injectIntl(Header);
